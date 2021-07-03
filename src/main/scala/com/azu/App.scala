@@ -12,6 +12,11 @@ import scala.scalajs.js.annotation.JSImport
 @js.native
 object AppCSS extends js.Object
 
+
+@JSImport("resources/bootstrap.css", JSImport.Default)
+@js.native
+object BootstrapCSS extends js.Object
+
 @JSImport("resources/logo.svg", JSImport.Default)
 @js.native
 object ReactLogo extends js.Object
@@ -20,6 +25,7 @@ object ReactLogo extends js.Object
   type Props = Unit
 
   private val css = AppCSS
+  private val bcss = BootstrapCSS
 
   def render() = {
     div(className := "App")(

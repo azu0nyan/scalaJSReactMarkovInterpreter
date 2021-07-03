@@ -6,9 +6,6 @@ object Rule {
   def fromSting(from: String): Option[Rule] = {
     val splitted = from.split(arrow)
     Option.when(splitted.length == 2) {
-      println(splitted(0))
-      println(splitted(0).filter(_ != epsilon))
-      println(splitted(0).filter(_ != epsilon).myStrip())
       val left = splitted(0).filter(_ != epsilon).myStrip()
       val isTerminal = splitted(1).startsWith(".")
       val right =

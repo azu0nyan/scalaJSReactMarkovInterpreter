@@ -9,29 +9,31 @@ import slinky.web.html._
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-@react class InterpreterView extends Component{
-  case class Props(alg:Algorithm, start:String)
+@react class InterpreterView extends Component {
+  case class Props(alg: Algorithm, start: String)
   override type State = Interpreter
   override def initialState: Interpreter = Interpreter.build(props.alg, props.start)
 
-  override def componentWillReceiveProps(props:Props):Unit = {
+  override def componentWillReceiveProps(props: Props): Unit = {
     println(s"props changed $props")
     setState(Interpreter.build(props.alg, props.start))
   }
 
-  def nextStep():Unit = {
+  def nextStep(): Unit = {
     println(state)
     println(state.alg.findApplicable(state.current))
     println(state.step)
-    for(newState <- state.step)
+    for (newState <- state.step)
       setState(newState)
   }
 
   override def render(): ReactElement = div(
-    AlgorithmStepsView(state),
     button(
-      "step",
+      "Шаг",
+      className := "btn btn-primary",
       onClick := (() => nextStep())
-    )
+    ),
+    AlgorithmStepsView(state),
+
   )
 }

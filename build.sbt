@@ -41,7 +41,7 @@ fastOptJS / webpackConfigFile := Some(baseDirectory.value / "webpack" / "webpack
 fullOptJS / webpackConfigFile := Some(baseDirectory.value / "webpack" / "webpack-opt.config.js")
 Test / webpackConfigFile := Some(baseDirectory.value / "webpack" / "webpack-core.config.js")
 
-fastOptJS / webpackDevServerExtraArgs := Seq("--inline", "--hot")
+fastOptJS / webpackDevServerExtraArgs := Seq("--inline", "--hot", "--host:0.0.0.0")
 fastOptJS / webpackBundlingMode := BundlingMode.LibraryOnly()
 
 Test / requireJsDomEnv := true
