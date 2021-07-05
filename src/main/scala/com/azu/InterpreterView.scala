@@ -19,19 +19,27 @@ import scala.scalajs.js.annotation.JSImport
     setState(Interpreter.build(props.alg, props.start))
   }
 
-  def nextStep(): Unit = {
+  def nextSteps(count: Int): Unit = {
     println(state)
     println(state.alg.findApplicable(state.current))
     println(state.step)
-    for (newState <- state.step)
-      setState(newState)
+    var cur = state
+    for (_ <- 0 until count) {
+      cur = cur.step.getOrElse(cur)
+    }
+    setState(cur)
   }
 
   override def render(): ReactElement = div(
     button(
       "Шаг",
       className := "btn btn-primary",
-      onClick := (() => nextStep())
+      onClick := (() => nextSteps(1))
+    ),
+    button(
+      "Шаг x10",
+      className := "btn btn-primary",
+      onClick := (() => nextSteps(10))
     ),
     AlgorithmStepsView(state),
 
